@@ -8,13 +8,12 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("rituals")
-class RitualController (private val repository: RitualRepository) {
+class RitualController (val repository: RitualRepository) {
 
     @PostMapping
     fun createRitual(@RequestBody ritual: Ritual): ResponseEntity<Ritual>{
-//        val createRitual = repository.save(ritual)
-//        return ResponseEntity.ok(createRitual)
-        return ResponseEntity.status(201).build()
+        val createRitual = repository.save(ritual)
+        return ResponseEntity.ok(createRitual)
     }
 
     @GetMapping
